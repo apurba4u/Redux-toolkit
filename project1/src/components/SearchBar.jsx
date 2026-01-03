@@ -22,7 +22,8 @@ export const SearchBar = () => {
           setText(elem.target.value)
         }}
         className='w-full border-2 p-3 rounded outline' 
-        type="text" 
+        type="text"
+        required
         placeholder='search anything....'/>
         <button
         className='border-2 p-3 rounded outline cursor-pointer active:scale-95 active:bg-gray-950'
