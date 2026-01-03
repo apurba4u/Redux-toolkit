@@ -1,4 +1,4 @@
-import { fetchPhotos } from "./api/mediaApi"
+import { fetchPhotos, fetchVideos } from "./api/mediaApi"
 
 const App = () => {
   // function getPhotos() {
@@ -6,10 +6,16 @@ const App = () => {
   // }
   return (
     <div className="h-screen w-full bg-gray-950 text-white">
-      <button onClick={async () => {
+      <div className="flex gap-10">
+        <button onClick={async () => {
         const data = await fetchPhotos('dog')
-        console.log(data);
-      }}>Click</button>
+        console.log(data.results);
+      }}>Get Photos</button>
+      <button onClick={async () => {
+        const data = await fetchVideos('dog')
+        console.log(data.videos);
+      }}>Get Videos</button>
+      </div>
     </div>
   )
 }
