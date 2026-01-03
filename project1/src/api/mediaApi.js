@@ -25,6 +25,6 @@ export async function fetchGif(query, limit=15) {
     params:{q:query,key: TENOR_KEY, limit},
   })
   // console.log(res);
-  return res.data
+  return res
 }
 
