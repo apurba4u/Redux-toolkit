@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+}
+h1 {
+  margin: 5px;
+  font-size: 50px;
+}
+
+button {
+  padding: 15px;
+  margin: 5px;
+  background-color: aquamarine;
+  border: none;
+  border-radius: 10%;
+  transition: transform;
+}
+input {
+  padding: 15px;
+  margin: 5px;
+}
+input[type="text"] {
+  color: red;
+}
+button:active {
+  transform: scale(95%);
+}
