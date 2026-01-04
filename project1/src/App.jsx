@@ -1,7 +1,7 @@
 import { fetchPhotos, fetchVideos, fetchGif } from "./api/mediaApi"
-import ResultGrid from "./components/ResultGrid"
-import { SearchBar } from "./components/SearchBar"
-import { Tabs } from "./components/Tabs"
+import { CollectionPage } from "./Pages/CollectionPage"
+import { Homepage } from "./Pages/Homepage"
+import { Route, Routes } from "react-router-dom"
 
 const App = () => {
   // function getPhotos() {
@@ -9,9 +9,14 @@ const App = () => {
   // }
   return (
     <div className="min-h-screen w-full bg-gray-950 text-white">
-      <SearchBar />
-      <Tabs />
-      <ResultGrid />
+      {/* <Routes>
+        <Route path='/' element={<Homepage />}></Route>
+        <Route path='/collection' element={<CollectionPage />}></Route>
+      </Routes> */}
+      <Routes>
+        <Route path="/" element={<Homepage />}></Route>
+        <Route path="/collection" element={<CollectionPage />}></Route>
+      </Routes>
     </div>
   )
 }

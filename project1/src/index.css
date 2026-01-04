@@ -2,3 +2,7 @@
 #bottom {
   background: linear-gradient(transparent);
 }
+
+* {
+  font-family: 'helvetica neue';
+}
