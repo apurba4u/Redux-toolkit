@@ -31,7 +31,6 @@ const ResultGrid = () => {
               src: elem.urls.full,
               url: elem.links.html
             }));
-            console.log(response);
           }
           if (activeTab == "videos") {
             let response = await fetchVideos(query);
