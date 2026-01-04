@@ -16,7 +16,7 @@ export const SearchBar = () => {
       <form onSubmit={(elem) => {
         submitHandler(elem)
       }}
-       className='flex p-10 gap-6'>
+       className='flex bg-[#0F2854] p-10 gap-6'>
         <input value={text} 
         onChange={(elem) => {
           setText(elem.target.value)
