@@ -8,7 +8,7 @@ const App = () => {
   //   fetchPhotos()
   // }
   return (
-    <div className="h-screen w-full bg-gray-950 text-white">
+    <div className="min-h-screen w-full bg-gray-950 text-white">
       <SearchBar />
       <Tabs />
       <ResultGrid />

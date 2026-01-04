@@ -1,8 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGif, fetchPhotos, fetchVideos } from "../api/mediaApi";
 import { useEffect } from "react";
-import { setError, setLoading, setResults } from "../redux/features/searchSlice";
-
+import {
+  setError,
+  setLoading,
+  setResults,
+} from "../redux/features/searchSlice";
+import ResultCard from "./ResultCard";
 
 const ResultGrid = () => {
   const { query, activeTab, results, loading, error } = useSelector(
@@ -12,10 +16,10 @@ const ResultGrid = () => {
 
   useEffect(
     function () {
-      if(!query) return
+      if (!query) return;
       async function getData() {
         try {
-          dispatch(setLoading())
+          dispatch(setLoading());
           let data = [];
           if (activeTab == "photos") {
             let response = await fetchPhotos(query);
@@ -25,7 +29,9 @@ const ResultGrid = () => {
               title: elem.alt_description,
               thumbnail: elem.urls.small,
               src: elem.urls.full,
+              url: elem.links.html
             }));
+            console.log(response);
           }
           if (activeTab == "videos") {
             let response = await fetchVideos(query);
@@ -35,33 +41,44 @@ const ResultGrid = () => {
               title: elem.user.name || "video",
               thumbnail: elem.image,
               src: elem.video_files[0].link,
+              url: elem.url
             }));
           }
           if (activeTab == "gif") {
             let response = await fetchGif(query);
             data = response.data.results.map((elem) => ({
               id: elem.id,
-              type: "GIF",
+              type: "gif",
               title: elem.title || "GIF",
-              src: elem.media_formats.gif.url,
               thumbnail: elem.media_formats.tinygif.url,
+              src: elem.media_formats.gif.url,
+              url: elem.url,
             }));
           }
           dispatch(setResults(data));
         } catch (err) {
-          dispatch(setError(err.message))
+          dispatch(setError(err.message));
         }
       }
       getData();
     },
-    [query, activeTab])
-  if (error) return <h1>Error</h1>
-  if (loading) return <h1>Loading</h1>
-  return <div>
-    {results.map((elem, idx) => {
-      return <div key={idx}>{elem.title}</div>
-    })}
-  </div>;
+    [query, activeTab]
+  );
+
+  if (error) return <h1>Error</h1>;
+  if (loading) return <h1>Loading</h1>;
+
+  return (
+    <div className="flex flex-wrap px-10 overflow-auto gap-6 w-full justify-between">
+      {results.map((elem, idx) => {
+        return (
+          <div key={idx}>
+              <ResultCard elem={elem} />
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default ResultGrid;
